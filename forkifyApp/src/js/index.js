@@ -9,12 +9,12 @@ const controlSearch = async ()=>{
     if (query) {
         state.search = new Search(query);
 
-        searchView.cleanInput();
-        searchView.cleanResult();
+        searchView.clearInput();
+        searchView.clearResults();
         renderLoader(elements.searchRes);
         await state.search.getResult();
         clearLoader();
-        searchView.renderResult(state.search.data);
+        searchView.renderResults(state.search.data);
         
 
     }
@@ -25,5 +25,12 @@ elements.searchForm.addEventListener('submit',(e)=>{
     controlSearch();
 });
 
-const search = new Search('pizza');
+elements.searchResPages.addEventListener('click', e => {
+    const btn = e.target.closest('.btn-inline');
+    if (btn) {
+        const goToPage = parseInt(btn.dataset.goto, 10);
+        searchView.clearResults();
+        searchView.renderResults(state.search.data, goToPage);
+    }
+});
 

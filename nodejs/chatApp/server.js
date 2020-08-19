@@ -5,7 +5,9 @@ var app = express()
 app.use(express.static(__dirname))
 app.use(bodyParser.json())
 
-var messages = []
+var messages = [
+    {name:'System',message:'Welcome !!! Start Chatting...'},
+    ]
 
 app.get('/messages',(req,res) =>{
     res.send(JSON.stringify(messages))

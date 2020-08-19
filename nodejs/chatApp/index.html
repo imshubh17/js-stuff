@@ -22,7 +22,7 @@
             <br>
             <button id="send" class="btn btn-success">Send</button>
         </div>
-        <div id="messages">
+        <div id="messages" class="list-group">
 
         </div>
     </div>
@@ -45,7 +45,10 @@
         function addMessage(message){
             let msgBox = document.querySelector('#messages');
             const msg = `
-                <h4>${message.name}</h4> <p> ${message.message}</p>
+                <div class="list-group-item">
+                    <h4 class="list-group-item-success">${message.name}</h4>
+                    <p class="list-group-item-info"> ${message.message}</p>
+                </div>
             `
             msgBox.insertAdjacentHTML('afterbegin', msg);
         }
@@ -74,7 +77,7 @@
                 referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
                 body: JSON.stringify({name:info.name,message:info.message}) // body data type must match "Content-Type" header
             })
-            .then(()=>getMessage())
+            .then(()=>location.reload())
             .catch(e => console.log('somthing went wronng in post method'));
             
         }

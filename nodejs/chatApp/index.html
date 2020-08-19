@@ -1,1 +1,89 @@
-hello shubham
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Chat App</title>
+  </head>
+  <body>
+    <div class="container">
+        <br>
+        <div class="jumbotron">
+            <h1 class="display-4">Send Message</h1>
+            <br>
+            <input id="name" class="form-control" placeholder="Name">
+            <br>
+            <textarea id="msg" class="form-control" placeholder="Message"></textarea>
+            <br>
+            <button id="send" class="btn btn-success">Send</button>
+        </div>
+        <div id="messages">
+
+        </div>
+    </div>
+    <script>
+        (()=>{
+            console.log('loding js ....');
+            let sendBtn = document.querySelector('#send').addEventListener('click',(e)=>{
+                e.preventDefault();
+                console.log(e);
+                inputName = document.querySelector('#name').value;
+                inputMsg = document.querySelector('#msg').value;
+                
+                //addMessage({name:"shubham", message:"Hello,Good Morning!!!"})
+                postMessage({name:inputName , message:inputMsg});
+            })
+            getMessage();
+            
+        })()
+
+        function addMessage(message){
+            let msgBox = document.querySelector('#messages');
+            const msg = `
+                <h4>${message.name}</h4> <p> ${message.message}</p>
+            `
+            msgBox.insertAdjacentHTML('afterbegin', msg);
+        }
+
+        function getMessage(){
+            fetch('http://127.0.0.1:3000/messages')
+            .then(response => response.json())
+            .then(data =>{
+                data.forEach(msg =>{
+                    addMessage(msg)
+                })
+            });
+        }
+
+        function postMessage(info){
+           fetch('http://127.0.0.1:3000/messages', {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify({name:info.name,message:info.message}) // body data type must match "Content-Type" header
+            })
+            .then(()=>getMessage())
+            .catch(e => console.log('somthing went wronng in post method'));
+            
+        }
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

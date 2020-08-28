@@ -1,0 +1,20 @@
+#commands
+$ node //open console
+$ npm install package -g //for global install 
+or 
+$ npm i package 
+$ npm install package -D //for develoment install s
+$ npm init // for setup package.json file.
+$ npm ls // to see all package
+$ npm outdated // to check package detail of version 
+$ npm update  //to update package
+
+# for publish package // package.json should present
+$ npm login
+$ npm publish
+
+#note
+to export function
+```
+module.exports = moduleName;
+```

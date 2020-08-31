@@ -1,0 +1,6 @@
+$ npm install -g typescript // install typescript
+$ tsc -v // check version
+
+$ tsc main.ts //compile file
+
+$ tsc main.ts --watch //compile step by step in changes

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>React</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA==" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="root"></div>
+<script type="text/babel">
+    const msg = <h1>Hello World!!!</h1>;
+
+    const Nav = ({name})=>{
+        return (
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <a className="navbar-brand" href="#">{name}</a>
+            <ul className="navbar-nav">
+                <li><a className="nav-link" href="#">Home</a></li>
+                <li><a className="nav-link" href="#">About</a></li>
+                <li><a className="nav-link" href="#">Contact</a></li>
+            </ul>
+            </nav>
+        )
+    }
+
+    const Body = ()=>{
+        return (
+            <div> 
+                <h2>a Container</h2>
+                <p>The w3-container class is one of the most important W3.CSS classes.</p>
+                <p>It provides correct margins, padding, alignments, and more, to most HTML elements.</p>
+            </div>
+        )
+    }
+    
+    class Page extends React.Component{
+        state = {
+            loggedIn: false
+        }
+        login = ()=> this.setState({loggedIn: true})
+        logout =()=> this.setState({loggedIn: false})
+        render(){
+            return (
+                <div>
+                    <button onClick= {this.login}>Login</button>
+                    <button onClick= {this.logout}>Logout</button>
+                    <p>This page is {this.state.loggedIn ? "Logged in" : "Not Logged in"}</p>
+                    <Nav name="React"/>
+                    <Body/>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Page />, document.getElementById('root'));
+</script>
+</body>
+</html>

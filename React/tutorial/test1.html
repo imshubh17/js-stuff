@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>React</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA==" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="root"></div>
+<script type="text/babel">
+    const lst = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const App =({weekDay})=>{
+        return (
+            <div>
+                <h1>Week Days</h1>
+                <ul>
+                    {weekDay.map((day ,i)=> <li key={i}>{day}</li>)}
+                </ul>
+            </div>
+        )
+    }
+   
+    ReactDOM.render(<App weekDay={lst}/>, document.getElementById('root'));
+</script>
+</body>
+</html>

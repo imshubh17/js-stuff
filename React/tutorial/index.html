@@ -36,6 +36,22 @@
             </div>
         )
     }
+    const NotDisplay = ()=>{
+        return (
+            <div>
+                <h1>Please Login Page</h1>                
+            </div>
+        )
+    }
+
+    const Display = ()=>{
+        return (
+                <div>                                        
+                    <Nav name="React"/>
+                    <Body/>
+                </div>
+            )
+    }
     
     class Page extends React.Component{
         state = {
@@ -45,12 +61,10 @@
         logout =()=> this.setState({loggedIn: false})
         render(){
             return (
-                <div>
-                    <button onClick= {this.login}>Login</button>
-                    <button onClick= {this.logout}>Logout</button>
-                    <p>This page is {this.state.loggedIn ? "Logged in" : "Not Logged in"}</p>
-                    <Nav name="React"/>
-                    <Body/>
+                <div> 
+                    <button onClick= {this.login}>Login</button>        
+                    <button onClick= {Page.logout}>Logout</button>
+                    {this.state.loggedIn ? <Display/> : <NotDisplay/>}                
                 </div>
             )
         }

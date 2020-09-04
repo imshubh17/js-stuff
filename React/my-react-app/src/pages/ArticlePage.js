@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import articles from './article-content';
 import NotFoundPage from './NotFoundPage';
+import CommentsList from '../components/CommentsList';
 
 const ArticlePage = ({match})=>{
 
@@ -28,9 +29,12 @@ const ArticlePage = ({match})=>{
             {article.content.map((para,key) => (
                 <p key = {key}>{para}</p>
             ))}
+            <CommentsList comments={articleInfo.comments}/>
         </>
         
     )
 };
 
 export default ArticlePage;
+
+

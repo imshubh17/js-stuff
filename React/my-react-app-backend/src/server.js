@@ -2,9 +2,11 @@ import express  from 'express';
 import bodyParser from 'body-parser';
 import {MongoClient} from 'mongodb';
 import uri from '../config';
+import path from 'path';
 
 const app = express();
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname,"build")));
 
 const withDB = async (operation, res) => {
     try {
@@ -56,5 +58,9 @@ app.post('/api/article/:name/add-comment',(req,res)=>{
         res.status(200).json(updatedArticleInfo); 
     },res);       
 });
+
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname + "/build/index.html"));
+})
 
 app.listen(8000, ()=>console.log('server listnning...'));

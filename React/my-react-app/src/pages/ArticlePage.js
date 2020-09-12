@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import articles from './article-content';
 import NotFoundPage from './NotFoundPage';
 import CommentsList from '../components/CommentsList';
+import AddCommentForm from '../components/AddComment';
 
 const ArticlePage = ({match})=>{
 
@@ -30,6 +31,7 @@ const ArticlePage = ({match})=>{
                 <p key = {key}>{para}</p>
             ))}
             <CommentsList comments={articleInfo.comments}/>
+            <AddCommentForm articleName={name} setArticleInfo={setArticleInfo} />
         </>
         
     )
